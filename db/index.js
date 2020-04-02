@@ -1,8 +1,8 @@
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize("steam", "root", "pass", {
+var sequelize = new Sequelize("steam", "root", null, {
   host: 'localhost',
-  dialect: 'mysql'
+  dialect: 'mysql',
 });
 
 
@@ -24,7 +24,7 @@ var Game = sequelize.define('game', {
   recent_negative_count: Sequelize.INTEGER,
   recent_positive_count: Sequelize.INTEGER
 });
-
+//For creating item table structure
 var Screenshot = sequelize.define('screenshot', {
   id: {
     type: Sequelize.INTEGER,
@@ -36,7 +36,7 @@ var Screenshot = sequelize.define('screenshot', {
 })
 
 
-
+//for checking connection status
 sequelize
   .authenticate()
   .then(() => {
@@ -45,7 +45,8 @@ sequelize
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
-
+ 
+//Applying Item Table to database
 Game.sync({ force: false, logging: false }).then(() => {
 });
 

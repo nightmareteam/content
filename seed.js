@@ -1,10 +1,10 @@
 const faker = require('faker');
 
-const db = require('./db');
+const db = require('./db/index.js');
 
 var games = [];
 var screenshots = [];
-for(let i = 0; i < 100; i++) {
+for(let i = 0; i < 1000000; i++) {
   games.push({
     name: faker.commerce.productName(),
     description: faker.lorem.paragraph(),
