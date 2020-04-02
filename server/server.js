@@ -7,7 +7,7 @@ const port = 3002;
 app.use(express.static('public'));
 
 app.get('/games/:uid', (req, res) => {
-  var uid = req.params.uid;
+  var uid = req.pagit prams.uid;
   db.findGamebyId(uid, (err, game) => {
     if(err) {
       console.log(err);

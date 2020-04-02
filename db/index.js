@@ -78,7 +78,7 @@ var findGamebyId = (id, callback) => {
     });
   }
 
-
+//set up structure of data and going to require it into the seed data
   module.exports.findGamebyId = findGamebyId;
   module.exports.findScreenshots = findScreenshots;
   module.exports.Game = Game;
