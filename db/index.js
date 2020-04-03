@@ -6,7 +6,7 @@ var sequelize = new Sequelize("steam", "root", null, {
 });
 
 
-var Game = sequelize.define('game', {
+ Game = sequelize.define('game', {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -83,3 +83,4 @@ var findGamebyId = (id, callback) => {
   module.exports.findScreenshots = findScreenshots;
   module.exports.Game = Game;
   module.exports.Screenshot = Screenshot;
+  module.exports.sequelize = sequelize;

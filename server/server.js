@@ -1,13 +1,12 @@
 const express = require('express');
 const app = express();
 const db = require('../db');
-const env = require('../env');
 const help = require('../help');
 const port = 3002;
 app.use(express.static('public'));
 
 app.get('/games/:uid', (req, res) => {
-  var uid = req.pagit prams.uid;
+  var uid = req.params.uid;
   db.findGamebyId(uid, (err, game) => {
     if(err) {
       console.log(err);

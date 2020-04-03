@@ -48,6 +48,7 @@ class App extends React.Component {
     }
   }
 
+  //Not dynamic. Need to add path.basename(document.URL) = id
   componentDidMount() {
     fetch('/games/1')
     .then(response => response.json())
@@ -66,7 +67,7 @@ class App extends React.Component {
           videos: this.state.media.videos,
           images: screenshots
         }
-      }, () => console.log(this.state));
+      }, () => console.log('finding put what contect', this.state));
     });
 
     fetch('/videos')
