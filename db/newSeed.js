@@ -4,19 +4,20 @@
  * each photo will have 
  */
 const faker = require('faker');
+
 let game = [];
-let indexer = 0;  //for s3 bucket indexer
-let photoSet = 0;
+let photoSet = 0;  let indexer = 0;
 function photoDistubutor() {
-     if(photoSet < 2) { 
+   
+    if (photoSet < 10) {
+                                         //for s3 bucket indexer
         while (indexer < 1000) {
             let imageUrls = [];                                  // am sharing 1000 urls among 10Mil entries
-            for (let i = 0; i < 10; i += 1) { 
+            for (let i = 0; i < 10; i += 1) {
                 imageUrls.push(`https://steam-content-display.s3-us-west-2.amazonaws.com/steam_content${indexer}.jpg`);
                 indexer += 1; // adds 1 to the 1000 max photo urls I am using
             }
             return imageUrls;
-                        console.log('photoset' , photoSet)
         }
         photoSet += 1;
     }
@@ -38,18 +39,21 @@ function photoDistubutor() {
 //     }
 // }
 
+//give every entry 3 videos and a thumbnail image of video
 function getVideos() {
     videoArray = [];
     for (let mediaIndexer = 0; mediaIndexer < 3; mediaIndexer += 1) {
-        const screenShot ={ image: `https://steam-content-videos.s3-us-west-2.amazonaws.com/steam_screenshot${mediaIndexer}.png` ,
-videoLink:`https://steam-content-videos.s3-us-west-2.amazonaws.com/steam_content_video${mediaIndexer}.mp4`}
-        videoArray.push( screenShot )
+        const screenShot = {
+            image: `https://steam-content-videos.s3-us-west-2.amazonaws.com/steam_screenshot${mediaIndexer}.png`,
+            videoLink: `https://steam-content-videos.s3-us-west-2.amazonaws.com/steam_content_video${mediaIndexer}.mp4`
+        }
+        videoArray.push(screenShot)
     }
     return videoArray;
 }
 
 
-for (let i = 0; i < 1000; i += 1) {
+for (let i = 0; i < 10000; i += 1) {
     game.push({
         id: i,
         name: faker.commerce.productName(),
