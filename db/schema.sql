@@ -1,5 +1,3 @@
-CREATE DATABASE steam;
-
 
 CREATE TABLE games (
 gameid                      int,
@@ -13,5 +11,4 @@ positive_review_count   int,
 recent_negative_count   int,
 recent_positive_count   int,
 media_video             text[],
-tag                     varchar(25)[]
 )

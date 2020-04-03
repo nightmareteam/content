@@ -25,6 +25,7 @@ var sequelize = new Sequelize("steam", "root", null, {
   recent_positive_count: Sequelize.INTEGER
 });
 //For creating item table structure
+//screenshots at the image urls
 var Screenshot = sequelize.define('screenshot', {
   id: {
     type: Sequelize.INTEGER,
