@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS games ;
 CREATE TABLE games (
 gameid                  int,
 name                    varchar(50),
-description             text,
+description             text, 
 head_url                jsonb,
 release_date            varchar(70),
 developer               varchar(70),
