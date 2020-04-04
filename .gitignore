@@ -27,4 +27,4 @@ dist/
 # Enviroment variables
 env/
 
-sdc/
+sdc/psql/game-reviews.csv
