@@ -28,31 +28,47 @@ function getVideos() {
         }
 
         videoArray.push(screenShot)
-    } console.log(JSON.stringify(videoArray))
+    }
     return JSON.stringify(videoArray);
 }
 let stringifyVideoArray = getVideos();
 
-const entireGameDump = fs.createWriteStream('./game-reviews.csv', { flags: 'a' });
-for (let i = 0; i < 1000; i += 1) {
-    entireGameDump.write(
-/*name */          faker.commerce.productName() + '|' +
-/*description */   faker.lorem.paragraph() + '|' +
-/*head_url */      `[${photoDistubutor()}]` + '|' +
-/*release_date */  faker.date.past() + '|' +
-/*developer */     faker.company.companyName() + '|' +
-/*publisher */     faker.company.companyName() + '|' +
-/*negative */      faker.random.number(1000) + '|' +
-/*positive */      faker.random.number(1000) + '|' +
-/*recent */        faker.random.number(100) + '|' +
-/*recent */        faker.random.number(100) + '|' +
-/*media_video */   `${stringifyVideoArray}` + '\n' 
-    );
+
+
+const write = (writer, data) => {
+    if (!writer.write(data)) {
+        return new Promise((resolve) => {
+            writer.once('drain', resolve)
+        })
+    }
 }
-entireGameDump.end();
-entireGameDump.on('finish', () => {
-    console.log('Files have been loaded')
-})
-entireGameDump.on('error', () => {
-    console.error('******Please fix me, I am broken.********')
-})
+const gameGenerator = async () => {
+    const writeEntireGameDump = fs.createWriteStream('./game-reviews.csv', { flags: 'a' });
+    let gameId = 1;
+    while (gameId <= 5) {
+        let singleGameData =
+                gameId + '|' +                        
+                faker.commerce.productName() + '|' +  
+                faker.lorem.paragraph() + '|' +       
+                `[${photoDistubutor()}]` + '|' +      
+                faker.date.past() + '|' +             
+                faker.company.companyName() + '|' +     
+                faker.company.companyName() + '|' +    
+                faker.random.number(1000) + '|' + 
+                faker.random.number(1000) + '|' + 
+                faker.random.number(100) + '|' +  
+                faker.random.number(100) + '|' +  
+                `${stringifyVideoArray}` + '\n'; 
+                  
+        let promise = write(writeEntireGameDump, singleGameData);
+        gameId++;
+        // since drain happens rarely, awaiting each write call is really slow.
+        if (promise) {
+            // we got a drain event, therefore we wait
+            await promise;
+        }
+        
+    }
+}
+gameGenerator();
+

@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS games ;
 
 CREATE TABLE games (
+gameid                  int,
 name                    varchar(50),
 description             text,
 head_url                jsonb,
