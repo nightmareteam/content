@@ -6,7 +6,7 @@ let indexer = 0;
 function photoDistubutor() {
     let imageUrls = [];
     for (let i = 0; i < 10; i += 1) {
-        imageUrls.push(`"https://steam-content-display.s3-us-west-2.amazonaws.com/steam_content${indexer}.jpg"`);
+        imageUrls.push(`'https://steam-content-display.s3-us-west-2.amazonaws.com/steam_content${indexer}.jpg'`);
         indexer += 1; // when index hit 1000 indexer will reset
         if (indexer === 1000) {
             indexer = 0;
@@ -43,17 +43,17 @@ const write = (writer, data) => {
     }
 }
 const gameGenerator = async () => {
-    const writeEntireGameDump = fs.createWriteStream('./game-reviews.csv', { flags: 'a' });
+    const writeEntireGameDump = fs.createWriteStream('./sdc/cassdb/game-reviews.csv', { flags: 'a' });
     let gameId = 1;
     while (gameId <= 5) {
         let singleGameData =
                 gameId + '|' +                        
-                faker.commerce.productName() + '|' +  
-                faker.lorem.paragraph() + '|' +       
+                `'${faker.commerce.productName()}'` + '|' +  
+                `'${faker.lorem.paragraph()}'` + '|' +       
                 `[${photoDistubutor()}]` + '|' +      
-                faker.date.past() + '|' +             
-                faker.company.companyName() + '|' +     
-                faker.company.companyName() + '|' +    
+                `'${faker.date.past()}'` + '|' +             
+                `'${faker.company.companyName()}'` + '|' +     
+                `'${faker.company.companyName()}'` + '|' +    
                 faker.random.number(1000) + '|' + 
                 faker.random.number(1000) + '|' + 
                 faker.random.number(100) + '|' +  

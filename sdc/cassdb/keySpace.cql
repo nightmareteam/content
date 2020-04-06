@@ -1,20 +1,22 @@
-CREATE KEYSPACE "games"
+CREATE KEYSPACE IF NOT EXISTS "games"
 WITH REPLICATION = {
-    'class': 'Simple Strategy', 'replication_factor': 1
+    'class': 'SimpleStrategy', 'replication_factor': 1
 };
 
-CREATE TABLE games.game (
+USE games;
+
+CREATE TABLE game (
 gameid                  int PRIMARY KEY,
 name                    varchar,
 description             text,
-head_url                list<varchar>
-release_date            varchar,
+head_url                list<text>,
+release_date            text,
 developer               varchar,
 publisher               varchar,
 negative_review_count   int,
 positive_review_count   int,
 recent_negative_count   int,
 recent_positive_count   int,
-media_video             list<frozen <set<varchar>>
+media_video             list<frozen <set<text>>>
 );
 
