@@ -17,6 +17,6 @@ negative_review_count   int,
 positive_review_count   int,
 recent_negative_count   int,
 recent_positive_count   int,
-media_video             list<frozen <set<text>>>
+media_video             list <text>
 );
 
