@@ -10,13 +10,14 @@ gameid                  int PRIMARY KEY,
 name                    varchar,
 description             text,
 head_url                list<text>,
-release_date            text,
+release_year            int,
+release_month           varchar,
 developer               varchar,
 publisher               varchar,
 negative_review_count   int,
 positive_review_count   int,
 recent_negative_count   int,
 recent_positive_count   int,
-media_video             list <text>
+media_video             list<text>
 );
 

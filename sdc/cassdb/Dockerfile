@@ -11,6 +11,4 @@ WORKDIR /src/app
 # What source code do you want to copy, and where to put it?
 COPY . /src/app
 
-# What port will the container talk to the outside world with once created?
-EXPOSE 8080
 
