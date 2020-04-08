@@ -4,20 +4,18 @@ WITH REPLICATION = {
 };
 
 USE games;
-
 CREATE TABLE game (
 gameid                  int PRIMARY KEY,
-name                    varchar,
 description             text,
-head_url                list<text>,
-release_year            int,
-release_month           varchar,
 developer               varchar,
-publisher               varchar,
+head_url                list<text>,
+media_video             list<text>,
+name                    varchar,
 negative_review_count   int,
 positive_review_count   int,
+publisher               varchar,
 recent_negative_count   int,
 recent_positive_count   int,
-media_video             list<text>
+release_month           varchar,
+release_year            int
 );
-
