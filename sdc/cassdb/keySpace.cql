@@ -4,6 +4,7 @@ WITH REPLICATION = {
 };
 
 USE games;
+
 CREATE TABLE game (
 gameid                  int PRIMARY KEY,
 description             text,
@@ -18,4 +19,5 @@ recent_negative_count   int,
 recent_positive_count   int,
 release_month           varchar,
 release_year            int
+
 );
