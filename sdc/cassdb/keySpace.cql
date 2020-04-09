@@ -1,6 +1,6 @@
 CREATE KEYSPACE IF NOT EXISTS "games"
 WITH REPLICATION = {
-    'class': 'SimpleStrategy', 'replication_factor': 1
+    'class': 'localStrategy', 'replication_factor': 2
 };
 
 USE games;
