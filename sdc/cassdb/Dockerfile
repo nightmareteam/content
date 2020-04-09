@@ -11,6 +11,5 @@ WORKDIR /src/app
 # What source code do you want to copy, and where to put it?
 COPY . /src/app
 
-EXPOSE 8080
 
 

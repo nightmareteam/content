@@ -1,7 +1,7 @@
 CREATE KEYSPACE IF NOT EXISTS "games"
 WITH REPLICATION = {
-    'class': 'localStrategy', 'replication_factor': 2
-};
+  'class' : 'NetworkTopologyStrategy', 
+  'datacenter1' : 3};
 
 USE games;
 
