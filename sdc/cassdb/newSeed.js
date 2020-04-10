@@ -67,9 +67,9 @@ const write = (writer, data) => {
     }
 }
 const gameGenerator = async () => {
-    const writeEntireGameDump = fs.createWriteStream('/src/app/game-reviews.csv', { flags: 'a' });
+    const writeEntireGameDump = fs.createWriteStream('./game-reviews.csv', { flags: 'a' });
                     let gameId = 1;
-                    while (gameId <= 10000000) {
+                    while (gameId <= 7000000) {
                         let singleGameData =
 /* gameid                */   gameId + '|' +                        
 /* description           */   `$$${faker.lorem.paragraph()}$$` + '|' +       

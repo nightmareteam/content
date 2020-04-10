@@ -1,7 +1,7 @@
 CREATE KEYSPACE IF NOT EXISTS "games"
-WITH REPLICATION = {
-  'class' : 'NetworkTopologyStrategy', 
-  'datacenter1' : 3};
+WITH REPLICATION = 
+  {'class': 'SimpleStrategy', 
+  'replication_factor' : 1};
 
 USE games;
 
@@ -10,7 +10,7 @@ gameid                  int PRIMARY KEY,
 description             text,
 developer               varchar,
 head_url                list<text>,
-media_video             list<text>,
+media_video             text,
 name                    varchar,
 negative_review_count   int,
 positive_review_count   int,
@@ -19,5 +19,5 @@ recent_negative_count   int,
 recent_positive_count   int,
 release_month           varchar,
 release_year            int
-
 );
+

@@ -11,5 +11,6 @@ WORKDIR /src/app
 # What source code do you want to copy, and where to put it?
 COPY . /src/app
 
+RUN ["apt-get", "update"]
 
-
+RUN ["apt-get", "install", "-y", "vim"]
