@@ -16,18 +16,22 @@ class Description extends React.Component {
   }
 
   render() {
+    const { release_month, release_year } = this.props;
+
     return(
       <Wrapper>
-        <Cover url={this.props.gameInfo.head_url}/>
-        <Snippet snippet={this.props.gameInfo.description}/>
+        <Cover url={this.props.head_url[0]}/>
+        <Snippet snippet={this.props.description}/>
         <Info 
-          developer={this.props.gameInfo.developer}
-          publisher={this.props.gameInfo.publisher}
-          date={this.props.gameInfo.release_date}
-          positiveReviews={this.props.gameInfo.positive_review_count}
-          negativeReviews={this.props.gameInfo.negative_review_count}
-          recentPositiveReviews={this.props.gameInfo.recent_negative_count}
-          recentNegativeReviews={this.props.gameInfo.recent_positive_count}
+        release_month ={release_month}
+        release_year = {release_year}
+          developer={this.props.developer}
+          publisher={this.props.publisher}
+          date={this.props.release_date}
+          positiveReviews={this.props.positive_review_count}
+          negativeReviews={this.props.negative_review_count}
+          recentPositiveReviews={this.props.recent_negative_count}
+          recentNegativeReviews={this.props.recent_positive_count}
         />
         <Tags tags={this.props.tags}/>
       </Wrapper>

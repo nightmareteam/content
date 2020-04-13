@@ -43,7 +43,7 @@ const write = (writer, data) => {
     }
 }
 const gameGenerator = async (limit) => {
-    const writeEntireGameDump = fs.createWriteStream('./game-reviews-TEST.csv', { flags: 'a' });
+    const writeEntireGameDump = fs.createWriteStream('./sdc/psql/game-reviews-TEST.csv', { flags: 'a' });
     let gameId = 1;
     while (gameId <= limit) {
         let singleGameData =
@@ -51,7 +51,8 @@ const gameGenerator = async (limit) => {
                 faker.commerce.productName() + '|' +  
                 faker.lorem.paragraph() + '|' +       
                 `[${photoDistubutor()}]` + '|' +      
-                faker.date.past() + '|' +             
+                faker.date.month() + '|' +
+                `${2000 + Math.floor(Math.random()*20)}`+ '|' +             
                 faker.company.companyName() + '|' +     
                 faker.company.companyName() + '|' +    
                 faker.random.number(1000) + '|' + 
@@ -59,7 +60,7 @@ const gameGenerator = async (limit) => {
                 faker.random.number(100) + '|' +  
                 faker.random.number(100) + '|' +  
                 `${stringifyVideoArray}` + '\n'; 
-                  console.log(singleGameData)
+                  
         let promise = write(writeEntireGameDump, singleGameData);
         gameId++;
         // since drain happens rarely, awaiting each write call is really slow.
@@ -70,5 +71,5 @@ const gameGenerator = async (limit) => {
         
     }
 }
-gameGenerator(5);
+gameGenerator(10000000);
 

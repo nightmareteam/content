@@ -12,8 +12,9 @@ const Overflow = styled.div`
 class Gallery extends React.Component {
   constructor(props) {
     super(props);
+    const { media } = this.props;
     this.state = {
-      url : props.media.images[0],
+      url : media[0],
       isVideo: false,
       sliderPos: 0,
       stripPos: 0,
@@ -60,7 +61,7 @@ class Gallery extends React.Component {
     });
     if(index > 1 && index < 12) {
       this.setState({
-        url: this.props.media.images[index - 2],
+        url: this.props.url[index - 2],
         isVideo: false
       })
     } else {
@@ -96,12 +97,12 @@ class Gallery extends React.Component {
   }
 
   render() {
+    const { media } = this.props;
     return(
       <Overflow>
         <Highlight url={this.state.url} isVideo={this.state.isVideo} />
         <Strip 
-              videos={this.props.media.videos}
-              screenshots={this.props.media.images} 
+              media={media} 
               onClick={this.handleItemClick} 
               stripPos={this.state.stripPos}
               selectorPos={this.state.selectorPos}
