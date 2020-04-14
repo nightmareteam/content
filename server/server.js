@@ -1,5 +1,4 @@
 require('newrelic');
-
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -16,8 +15,7 @@ const reqId = req.params.id;
       db.retrieveGameContent(reqId)
         .then((result)=>res.send(result.rows[0]))
         .catch(e=>console.log(e))
-        console.log('Sent row back to client.')
-                // res.send(rows);
+
       })
 
 

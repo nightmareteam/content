@@ -12,9 +12,9 @@ const Overflow = styled.div`
 class Gallery extends React.Component {
   constructor(props) {
     super(props);
-    const { media } = this.props;
+    const { media, head_url } = this.props;
     this.state = {
-      url : media[0],
+      url : head_url[0],
       isVideo: false,
       sliderPos: 0,
       stripPos: 0,
@@ -61,7 +61,7 @@ class Gallery extends React.Component {
     });
     if(index > 1 && index < 12) {
       this.setState({
-        url: this.props.url[index - 2],
+        url: this.props.head_url[index - 2],
         isVideo: false
       })
     } else {
@@ -69,7 +69,7 @@ class Gallery extends React.Component {
         index = 2;
       }
       this.setState({
-        url: this.props.media.videos[index].video,
+        url: this.props.media[index].thumbnail,
         isVideo: true
       })
     }
