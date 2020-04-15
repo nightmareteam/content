@@ -12,8 +12,11 @@ const Overflow = styled.div`
 class Gallery extends React.Component {
   constructor(props) {
     super(props);
+    const { head_url } = this.props;
     this.state = {
-      url : props.media.images[0],
+      url: head_url,
+      focusImage: head_url[0],
+      index: 0,
       isVideo: false,
       sliderPos: 0,
       stripPos: 0,
@@ -28,7 +31,15 @@ class Gallery extends React.Component {
     setInterval(this.handleRightArrowClick, 10000);
   }
   
-  handleItemClick(index) {
+  handleItemClick(indexer) {
+    this.setState({
+      index: indexer
+    })
+    //url is an array with urls
+    //this.state.indexer will iterate pictures
+    const { url, index } = this.state;
+    const { media } = this.props;
+    console.log('url1 ', url);
     if (index === 0) {
       this.setState({
         sliderPos: 0,
@@ -58,21 +69,20 @@ class Gallery extends React.Component {
     this.setState({
       selectorPos: 120*index
     });
-    if(index > 1 && index < 12) {
+    if(index > 0) {
       this.setState({
-        url: this.props.media.images[index - 2],
-        isVideo: false
+        focusImage: url[index],
       })
     } else {
       if(index === 12) {
-        index = 2;
-      }
-      this.setState({
-        url: this.props.media.videos[index].video,
-        isVideo: true
+      this.setState({ 
+        index: 0,
+        focusImage: url[index],
+       
       })
     }
   }
+}
   handleSliderMove(val) {
     this.setState({
       sliderPos: val,
@@ -96,12 +106,14 @@ class Gallery extends React.Component {
   }
 
   render() {
+    const { media } = this.props;
+    const { index, focusImage } = this.state;
+    console.log('media_videos: ', media)
     return(
       <Overflow>
-        <Highlight url={this.state.url} isVideo={this.state.isVideo} />
+        <Highlight media={media} index={index} focusImage={focusImage} isVideo={this.state.isVideo} />
         <Strip 
-              videos={this.props.media.videos}
-              screenshots={this.props.media.images} 
+              media={media} 
               onClick={this.handleItemClick} 
               stripPos={this.state.stripPos}
               selectorPos={this.state.selectorPos}

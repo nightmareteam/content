@@ -2,7 +2,7 @@ import React from 'react';
 import Gallery from "./Gallery.jsx";
 import Description from "./Description.jsx";
 import styled from 'styled-components';
-
+import axios from 'axios';
 const Background = styled.div`
   
 `;
@@ -18,7 +18,7 @@ const Wrapper = styled.section`
   `;
 
 
- const LeftCol = styled.div`
+const LeftCol = styled.div`
     float: left;
     width: 616px;
     display: block;
@@ -27,78 +27,99 @@ const Wrapper = styled.section`
 class App extends React.Component {
   constructor(props) {
     super(props);
+    const { id } = this.props;
     this.state = {
-      gameInfo: {
+      id,
+      onDisplay: false,
+        gameId: null,
         name: null,
         description: null,
         head_url: null,
-        release_date: null,
+        release_month: null,
+        release_year: null,
         developer: null,
         publisher: null,
         negative_review_count: null,
         positive_review_count: null,
         recent_negative_count: null,
-        recent_positive_count: null
-      },
-      tags: ['Free to play', 'MOBA', 'Strategy', 'Multiplayer', 'PVP'],
-      media: {
-        videos: null,
-        images: ['https://s3-us-west-1.amazonaws.com/fecsteam/Images/1.jpeg']
-      },
+        recent_positive_count: null,
+        media_video: [],
+      tags: ['Free to play', 'MOBA', 'Strategy', 'Multiplayer', 'PVP']
     }
   }
 
+//remove gameInof object
   //Not dynamic. Need to add path.basename(document.URL) = id
   componentDidMount() {
-    fetch('/games/1')
-    .then(response => response.json())
-    .then(gameInfo => {
-      gameInfo.head_url = 'https://s3-us-west-1.amazonaws.com/fecsteam/Images/header.jpg';
-      this.setState({
-        gameInfo
-      }, () => console.log(this.state));
-    });
+    const { onDisplay, id } = this.state;
+    axios.get(`/content/${id}`)
+      .then(({ data }) => ( 
+         this.setState({
+           id: 'test',
+          gameId: data.gameId,
+          name: data.name,
+          description: data.description,
+          head_url: data.head_url,
+          release_month: data.release_month,
+          release_year: data.realease_year,
+          developer: data.developer,
+          publisher: data.publisher,
+          negative_review_count: data.negative_review_count,
+          positive_review_count: data.positive_review_count,
+          recent_negative_count: data.recent_negative_count,
+          recent_positive_count: data.recent_positive_count,
+          media_video: data.media_video,
+        onDisplay: !onDisplay })
+         ))
+      .catch((err) => console.log(err))
 
-    fetch('/screenshots') 
-    .then(response => response.json())
-    .then(screenshots => {
-      this.setState({
-        media: {
-          videos: this.state.media.videos,
-          images: screenshots
-        }
-      }, () => console.log('finding put what contect', this.state));
-    });
 
-    fetch('/videos')
-    .then(response => response.json())
-    .then(videos => {
-      this.setState({
-        media: {
-          videos,
-          images:this.state.media.images
-        }
-      }, () => console.log(this.state));
-    });
   }
+
   render() {
-    return (
-      <Background>
-        <Wrapper>
-          <LeftCol>
-            <Gallery  media={this.state.media} 
+    const { name, description, head_url,onDisplay,
+      release_month, release_year, developer, publisher,
+      negative_review_count, positive_review_count, tags,
+      recent_negative_count, recent_positive_count, media_video
+    } = this.state;
+    if (!onDisplay) {
+      return(
+      <div>loading</div>
+      )
+    }
+
+    if (onDisplay) {
+      return (
+        <Background>
+          <Wrapper>
+            <LeftCol>
+              <Gallery
+                media={media_video}
+                head_url={head_url}
+              />
+            </LeftCol>
+            <Description
+            description={description}
+            release_month = {release_month}
+            release_year={release_year}
+              head_url={head_url}
+              developer={developer}
+              publisher={publisher}
+              positiveReviews={positive_review_count}
+              negativeReviews={negative_review_count}
+              recentPositiveReviews={recent_positive_count}
+              recentNegativeReviews={recent_negative_count}
+              tags={tags}
             />
-          </LeftCol>
-          <Description 
-          gameInfo={this.state.gameInfo} 
-          tags={this.state.tags}
-          />
-        </Wrapper>
-      </Background>
-    )
+          </Wrapper>
+        </Background>
+      )
+    }
   }
-  
 }
+
+
+
 
 
 export default App;
