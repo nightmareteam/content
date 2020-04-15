@@ -51,8 +51,8 @@ class App extends React.Component {
 //remove gameInof object
   //Not dynamic. Need to add path.basename(document.URL) = id
   componentDidMount() {
-    const { onDisplay } = this.state;
-    axios.get(`/content/44`)
+    const { onDisplay, id } = this.state;
+    axios.get(`/content/${id}`)
       .then(({ data }) => ( 
          this.setState({
            id: 'test',
@@ -89,7 +89,6 @@ class App extends React.Component {
     }
 
     if (onDisplay) {
-      console.log('media_video', media_video)
       return (
         <Background>
           <Wrapper>

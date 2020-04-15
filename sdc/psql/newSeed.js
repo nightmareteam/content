@@ -43,7 +43,7 @@ const write = (writer, data) => {
     }
 }
 const gameGenerator = async (limit) => {
-    const writeEntireGameDump = fs.createWriteStream('./sdc/psql/game-reviews-TEST.csv', { flags: 'a' });
+    const writeEntireGameDump = fs.createWriteStream('./sdc/psql/game-reviews.csv', { flags: 'a' });
     let gameId = 1;
     while (gameId <= limit) {
         let singleGameData =

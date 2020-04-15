@@ -27,5 +27,5 @@ dist/
 # Enviroment variables
 package-lock.json
 env/
-public/bundle.js
+/public/bundle.js
 sdc/psql/game-reviews-TEST.csv

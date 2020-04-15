@@ -17,10 +17,10 @@ const reqId = req.params.id;
         .then((result)=>res.send(result.rows[0]))
         .catch(e=>console.log(e))
       })
-app.get('/api/bundle.js',(req, res)=>{
+app.get('/public/bundle.js',(req, res)=>{
       res.sendFile(path.resolve(__dirname, '..', 'public', 'bundle.js'));
 })
-app.get('/loaderio-1dac395a0c5229294c14de07d32c8c2f/',(req, res)=>{
+app.get(/loaderio/,(req, res)=>{
       res.sendFile(path.resolve(__dirname, '..', 'loaderio-1dac395a0c5229294c14de07d32c8c2f.txt'))
 })
 
