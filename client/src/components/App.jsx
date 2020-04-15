@@ -69,7 +69,7 @@ class App extends React.Component {
           recent_negative_count: data.recent_negative_count,
           recent_positive_count: data.recent_positive_count,
           media_video: data.media_video,
-        onDisplay: !onDisplay },()=> console.log(this.state))
+        onDisplay: !onDisplay })
          ))
       .catch((err) => console.log(err))
 

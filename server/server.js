@@ -21,7 +21,7 @@ app.get('/public/bundle.js',(req, res)=>{
       res.sendFile(path.resolve(__dirname, '..', 'public', 'bundle.js'));
 })
 app.get(/loaderio/,(req, res)=>{
-      res.sendFile(path.resolve(__dirname, '..', 'loaderio-1dac395a0c5229294c14de07d32c8c2f.txt'))
+      res.sendFile(path.resolve(__dirname, '..', 'loaderio-aa5372974197dc3881c9aabb77e6cf43.txt'))
 })
 
 app.listen(port, () => { console.log('Listening to ' + port + '!');

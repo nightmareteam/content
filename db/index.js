@@ -1,11 +1,10 @@
 const { Pool } = require('pg');
-//const config = require('')
+const config = require('../config/config.js')
 pool = new Pool({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'steam',
-    port: 5432,
+    host: config.host,
+    user: config.user,
+    database: config.database,
+    port: config.port,
     max:1000,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,
