@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const db = require('../db');
-const env = require('../env');
 const help = require('../help');
 const port = 3002;
 app.use(express.static('public'));

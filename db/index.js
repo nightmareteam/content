@@ -1,12 +1,12 @@
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize("steam", "root", "pass", {
+var sequelize = new Sequelize("steam", "root", null, {
   host: 'localhost',
-  dialect: 'mysql'
+  dialect: 'mysql',
 });
 
 
-var Game = sequelize.define('game', {
+ Game = sequelize.define('game', {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -24,7 +24,7 @@ var Game = sequelize.define('game', {
   recent_negative_count: Sequelize.INTEGER,
   recent_positive_count: Sequelize.INTEGER
 });
-
+//For creating item table structure
 var Screenshot = sequelize.define('screenshot', {
   id: {
     type: Sequelize.INTEGER,
@@ -36,7 +36,7 @@ var Screenshot = sequelize.define('screenshot', {
 })
 
 
-
+//for checking connection status
 sequelize
   .authenticate()
   .then(() => {
@@ -45,7 +45,8 @@ sequelize
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
-
+ 
+//Applying Item Table to database
 Game.sync({ force: false, logging: false }).then(() => {
 });
 
@@ -77,8 +78,9 @@ var findGamebyId = (id, callback) => {
     });
   }
 
-
+//set up structure of data and going to require it into the seed data
   module.exports.findGamebyId = findGamebyId;
   module.exports.findScreenshots = findScreenshots;
   module.exports.Game = Game;
   module.exports.Screenshot = Screenshot;
+  module.exports.sequelize = sequelize;
