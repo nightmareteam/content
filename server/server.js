@@ -20,6 +20,7 @@ const reqId = req.params.id;
 app.get('/public/bundle.js',(req, res)=>{
       res.sendFile(path.resolve(__dirname, '..', 'public', 'bundle.js'));
 })
+//need to update
 app.get(/loaderio/,(req, res)=>{
       res.sendFile(path.resolve(__dirname, '..', 'loaderio-aa5372974197dc3881c9aabb77e6cf43.txt'))
 })

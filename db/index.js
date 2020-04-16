@@ -1,13 +1,10 @@
 const { Pool } = require('pg');
-const config = require('../config/config.js')
+const dbConfig = require('../config/config.js')
 pool = new Pool({
-    host: config.host,
-    user: config.user,
-    database: config.database,
-    port: config.port,
-    max:1000,
-    idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 2000,
+    host: dbConfig.host,
+    user: dbConfig.user,
+    database: dbConfig.database,
+    port: dbConfig.port,
 });
 pool.connect()
     .catch(err => console.error('error connecting', err.stack))
